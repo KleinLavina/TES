@@ -1,0 +1,117 @@
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  overflow: hidden;
+  
+  /* Fallback gradient background (if video doesn't load) */
+  background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 50%, #1a3d2e 100%);
+}
+
+/* Dark mode fallback background */
+.dark .hero-section {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+}
+
+/* Video background styling */
+.hero-section__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Dark overlay for better text readability */
+.hero-section__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+/* Dark mode overlay - slightly lighter */
+.dark .hero-section__overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-section__content {
+  position: relative;
+  z-index: 10;
+  padding: 4rem 3rem 6rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-section__headline {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  line-height: 1.1;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hero-section__subtitle {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: #f0f0f0;
+  margin: 0;
+  max-width: 600px;
+  line-height: 1.6;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 500px;
+    align-items: center;
+  }
+
+  .hero-section__content {
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .hero-section__headline {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+
+  .hero-section__subtitle {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-section__content {
+    padding: 3rem 2rem 5rem;
+  }
+}
