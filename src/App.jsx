@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from './components/Header';
 import MenuOverlay from './components/MenuOverlay';
 import HeroSection from './components/HeroSection';
+import Footer from './components/Footer';
 import './App.css';
 
 /**
@@ -11,7 +12,8 @@ import './App.css';
  * Features:
  * - Auto-hide header on scroll
  * - Floating menu overlay
- * - Hero section with placeholder background
+ * - Hero section with video background
+ * - Improved footer with multiple sections
  */
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,7 +33,7 @@ function App() {
       <main>
         <HeroSection />
         
-        {/* Additional sections can be added below */}
+        {/* Additional sections */}
         <section className="content-section" id="home">
           <div className="content-container">
             <h2>Welcome to Tag-os Elementary School</h2>
@@ -68,11 +70,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="footer">
-        <div className="content-container">
-          <p>&copy; 2026 Tag-os Elementary School. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

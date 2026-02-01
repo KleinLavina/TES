@@ -5,7 +5,7 @@ import './MenuOverlay.css';
  * Floating menu overlay panel
  * - Desktop: Right side top
  * - Mobile: Centered
- * - Smooth enter/exit transitions (no glitching)
+ * - Smooth enter/exit transitions with fade-in slide-down animation
  */
 const MenuOverlay = ({ isOpen, onClose }) => {
   const [shouldRender, setShouldRender] = useState(false);
@@ -22,18 +22,14 @@ const MenuOverlay = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      // First render the component
       setShouldRender(true);
-      // Then trigger the animation on next frame
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setIsAnimating(true);
         });
       });
     } else if (shouldRender) {
-      // Start exit animation
       setIsAnimating(false);
-      // Wait for transition to complete before unmounting
       const timer = setTimeout(() => {
         setShouldRender(false);
       }, 300);
@@ -52,7 +48,11 @@ const MenuOverlay = ({ isOpen, onClose }) => {
       <nav className={`menu-overlay ${isAnimating ? 'entering' : 'exiting'}`}>
         <ul className="menu-overlay__list">
           {menuItems.map((item, index) => (
-            <li key={index} className="menu-overlay__item">
+            <li 
+              key={index} 
+              className="menu-overlay__item"
+              style={{ animationDelay: `${index * 0.08}s` }}
+            >
               <a href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} onClick={onClose}>
                 {item}
               </a>

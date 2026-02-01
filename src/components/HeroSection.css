@@ -1,3 +1,43 @@
+/*
+ * ============================================
+ * HERO SECTION ANIMATION CONFIGURATION GUIDE
+ * ============================================
+ * 
+ * TITLE JUMPING WAVE ANIMATION
+ * ----------------------------
+ * Animation Name: jumpWave
+ * Location: .hero-section__headline-letter
+ * 
+ * Configurable Parameters:
+ * 1. Duration: 2s (change in animation property below)
+ * 2. Amplitude: -15px (change translateY in @keyframes jumpWave at 50%)
+ * 3. Letter Delay: 0.05s (change in HeroSection.jsx: index * 0.05)
+ * 4. Timing Function: ease-in-out (change in animation property)
+ * 5. Repeat: infinite (change to 'forwards' for single play, or add iteration count)
+ * 
+ * SUBTITLE COLOR WAVE ANIMATION
+ * ------------------------------
+ * Animation Name: colorWave
+ * Location: .hero-section__subtitle-letter
+ * 
+ * Configurable Parameters:
+ * 1. Duration: 3s (change in animation property below)
+ * 2. Letter Delay: 0.03s (change in HeroSection.jsx: index * 0.03)
+ * 3. Color Palette: Modify in @keyframes colorWave
+ *    - 0%/100%: #f0f0f0 (base light gray)
+ *    - 25%: #a8dadc (light blue)
+ *    - 50%: #f1faee (off white)
+ *    - 75%: #e9c46a (warm yellow)
+ * 4. Timing Function: ease-in-out
+ * 5. Repeat: infinite
+ * 
+ * PERFORMANCE TIPS:
+ * - Keep letter delays small (0.03-0.08s) for smooth wave
+ * - Use transform for position changes (GPU accelerated)
+ * - Limit color stops to 4-5 for smooth transitions
+ * ============================================
+ */
+
 .hero-section {
   position: relative;
   width: 100%;
@@ -12,11 +52,6 @@
   background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 50%, #1a3d2e 100%);
 }
 
-/* Dark mode fallback background */
-.dark .hero-section {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-}
-
 /* Video background styling */
 .hero-section__video {
   position: absolute;
@@ -29,22 +64,24 @@
   transform: translate(-50%, -50%);
   object-fit: cover;
   z-index: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
 }
 
-/* Dark overlay for better text readability */
+/* Show video once loaded - NO animation to reduce lag */
+.hero-section--video-loaded .hero-section__video {
+  opacity: 1;
+}
+
+/* Dark overlay for better text readability - NO animation */
 .hero-section__overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.45);
   z-index: 1;
-}
-
-/* Dark mode overlay - slightly lighter */
-.dark .hero-section__overlay {
-  background: rgba(0, 0, 0, 0.5);
 }
 
 .hero-section__content {
@@ -54,38 +91,64 @@
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-  animation: fadeInUp 1s ease-out;
 }
 
 .hero-section__headline {
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: var(--font-display);
   font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   color: #ffffff;
   margin: 0 0 1rem 0;
-  line-height: 1.1;
+  line-height: var(--line-height-tight);
   letter-spacing: 1px;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
+/* Individual letter animation for jumping wave effect */
+.hero-section__headline-letter {
+  display: inline-block;
+  animation: jumpWave 2s ease-in-out infinite;
+}
+
+/* Jumping wave animation - configurable */
+@keyframes jumpWave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px); /* Amplitude: adjust for bounce height */
+  }
+}
+
 .hero-section__subtitle {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-body);
   font-size: clamp(1.1rem, 2.5vw, 1.5rem);
   color: #f0f0f0;
   margin: 0;
   max-width: 600px;
-  line-height: 1.6;
+  line-height: var(--line-height-normal);
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+/* Individual letter animation for color wave effect */
+.hero-section__subtitle-letter {
+  display: inline-block;
+  animation: colorWave 3s ease-in-out infinite;
+}
+
+/* Color wave animation - configurable color palette */
+@keyframes colorWave {
+  0%, 100% {
+    color: #f0f0f0; /* Base color */
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  25% {
+    color: #a8dadc; /* Light blue */
+  }
+  50% {
+    color: #f1faee; /* Off white */
+  }
+  75% {
+    color: #e9c46a; /* Warm yellow */
   }
 }
 

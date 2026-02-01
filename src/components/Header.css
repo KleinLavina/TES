@@ -4,9 +4,23 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: var(--bg-primary);
-  box-shadow: 0 2px 8px var(--shadow-color);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.25s ease-out, 
+              background-color 0.25s ease-out, 
+              box-shadow 0.25s ease-out;
+  will-change: transform;
+}
+
+/* Transparent state - over hero section */
+.header--transparent {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* Scrolled state - solid background */
+.header--scrolled {
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .header--visible {
@@ -20,25 +34,173 @@
 .header__container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1.75rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 2rem;
+}
+
+/* Brand Section - Logo + Title */
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Logo with Hover Spin Effect */
+.header__logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.header__logo {
+  height: 55px;
+  width: auto;
+  display: block;
+}
+
+/* Continuous spin animation - controlled by inline style */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Logo brightness adjustment for transparent header */
+.header--transparent .header__logo {
+  filter: brightness(0) invert(1);
+}
+
+.header--scrolled .header__logo {
+  filter: none;
 }
 
 .header__title {
-  font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--accent-primary);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.8vw, 1.75rem);
+  font-weight: var(--font-weight-semibold);
   margin: 0;
   letter-spacing: 0.5px;
+  white-space: nowrap;
+  transition: color 0.25s ease-out;
+  position: relative;
+  display: inline-block;
+  transform: scaleY(1.15);
+  transform-origin: center bottom;
 }
 
+/* Typewriter animation wrapper */
+.header__title--typewriter {
+  overflow: hidden;
+  animation: typewriter 2.5s steps(28) 0.5s forwards;
+  /* Add padding to prevent descender clipping */
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Title color - white on transparent, green on scrolled */
+.header--transparent .header__title {
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.header--scrolled .header__title {
+  color: #1a4d2e;
+  text-shadow: none;
+}
+
+/* Desktop Navigation */
+.header__nav {
+  flex: 1;
+  display: none;
+}
+
+.header__nav-list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header__nav-item {
+  margin: 0;
+  opacity: 0;
+  transform: translateY(-15px);
+  animation: fadeInSlideDown 0.5s ease-out forwards;
+}
+
+/* Fade-in and slide-down animation for menu items */
+@keyframes fadeInSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header__nav-link {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+  white-space: nowrap;
+  position: relative;
+  letter-spacing: 0.3px;
+  transform: scaleY(1.1);
+  display: inline-block;
+}
+
+/* Nav link colors - white on transparent, dark on scrolled */
+.header--transparent .header__nav-link {
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.header--scrolled .header__nav-link {
+  color: #333333;
+  text-shadow: none;
+}
+
+.header__nav-link:hover {
+  opacity: 0.8;
+}
+
+.header--scrolled .header__nav-link:hover {
+  color: #1a4d2e;
+}
+
+.header__nav-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Mobile Menu Button */
 .header__actions {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
 }
 
 .header__menu-btn {
@@ -60,21 +222,84 @@
   display: block;
   width: 28px;
   height: 3px;
-  background-color: var(--accent-primary);
   border-radius: 2px;
-  transition: all 0.3s;
+  transition: background-color 0.3s ease-in-out;
 }
 
-@media (max-width: 768px) {
+/* Hamburger colors - white on transparent, green on scrolled */
+.header--transparent .hamburger {
+  background-color: #ffffff;
+}
+
+.header--scrolled .hamburger {
+  background-color: #1a4d2e;
+  box-shadow: none;
+}
+
+/* Desktop View - Show full navigation, hide hamburger */
+@media (min-width: 1025px) {
+  .header__nav {
+    display: block;
+  }
+
+  .header__menu-btn {
+    display: none;
+  }
+}
+
+/* Tablet View */
+@media (min-width: 769px) and (max-width: 1024px) {
   .header__container {
-    padding: 1rem 1.5rem;
+    padding: 1.5rem 1.5rem;
   }
 
   .header__title {
-    font-size: 1.2rem;
+    font-size: clamp(1.3rem, 2.5vw, 1.5rem);
+  }
+
+  .header__logo {
+    height: 50px;
+  }
+
+  .header__nav-link {
+    font-size: 1rem;
+  }
+
+  .hamburger {
+    width: 26px;
+  }
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+  .header__container {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .header__brand {
+    gap: 0.75rem;
+  }
+
+  .header__title {
+    font-size: clamp(1.15rem, 3vw, 1.3rem);
+  }
+
+  .header__logo {
+    height: 45px;
   }
 
   .hamburger {
     width: 24px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .header__title {
+    font-size: clamp(1rem, 4vw, 1.15rem);
+  }
+
+  .header__logo {
+    height: 40px;
   }
 }
