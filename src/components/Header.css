@@ -74,7 +74,7 @@
 
 /* Logo brightness adjustment for transparent header */
 .header--transparent .header__logo {
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 .header--scrolled .header__logo {
