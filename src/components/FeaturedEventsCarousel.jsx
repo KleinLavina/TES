@@ -108,12 +108,32 @@ const FeaturedEventsCarousel = () => {
     setIsPaused(false);
   };
 
+  // Split text into letters for animation
+  const splitTextToLetters = (text) => {
+    return text.split('').map((char, index) => (
+      <span key={index} className="letter" style={{ animationDelay: `${index * 0.03}s` }}>
+        {char === ' ' ? '\u00A0' : char}
+      </span>
+    ));
+  };
+
   return (
     <section 
       className="featured-events-carousel"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
+      {/* Section Title - Outside carousel */}
+      <div className="featured-events-carousel__header">
+        <h2 className="featured-events-carousel__section-title">
+          {splitTextToLetters('Featured & Upcoming Events')}
+        </h2>
+      </div>
+
+      {/* Carousel Container */}
+      <div 
+        className="featured-events-carousel__container"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
       {/* Slides */}
       <div className="featured-events-carousel__slides">
         {events.map((event, index) => (
@@ -228,6 +248,7 @@ const FeaturedEventsCarousel = () => {
           </div>
         </>
       )}
+      </div>
     </section>
   );
 };
