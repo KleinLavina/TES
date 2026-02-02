@@ -1,6 +1,6 @@
 .announcement-card {
   position: relative;
-  height: 400px;
+  height: 360px;
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
@@ -83,17 +83,17 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1.5rem;
+  padding: 1.25rem;
   color: white;
   transition: background 0.4s ease-in-out;
 }
 
 .announcement-card__title {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
   font-weight: var(--font-weight-bold);
   color: #ffffff;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.625rem 0;
   line-height: 1.3;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   transition: opacity 0.4s ease-in-out;
@@ -101,10 +101,10 @@
 
 .announcement-card__meta {
   display: flex;
-  gap: 1.25rem;
-  font-size: 0.85rem;
+  gap: 1rem;
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.95);
-  margin-bottom: 1rem;
+  margin-bottom: 0.875rem;
   font-family: var(--font-body);
   transition: opacity 0.4s ease-in-out;
 }
@@ -123,13 +123,13 @@
 
 .announcement-card__button {
   align-self: flex-start;
-  padding: 0.625rem 1.5rem;
+  padding: 0.5rem 1.25rem;
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 25px;
   color: white;
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: all 0.3s ease;

@@ -6,13 +6,13 @@
 .admin-dashboard__header {
   background: white;
   border-bottom: 1px solid #e0e0e0;
-  padding: 1.5rem 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .admin-dashboard__header-content {
   max-width: 1400px;
   margin: 0 auto;
+  padding: 1.5rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -85,19 +85,56 @@
   background: rgba(37, 99, 235, 0.05);
 }
 
+/* Tabs */
+.admin-dashboard__tabs {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.admin-dashboard__tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #718096;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: -2px;
+}
+
+.admin-dashboard__tab:hover {
+  color: #4a5568;
+  background: #f7fafc;
+}
+
+.admin-dashboard__tab--active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+  background: #f7fafc;
+}
+
+.admin-dashboard__tab svg {
+  flex-shrink: 0;
+}
+
 .admin-dashboard__main {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .admin-dashboard__header {
-    padding: 1rem 1.5rem;
-  }
-
   .admin-dashboard__header-content {
+    padding: 1rem 1.5rem;
     flex-direction: column;
     align-items: flex-start;
   }
@@ -117,7 +154,14 @@
     justify-content: center;
   }
 
-  .admin-dashboard__main {
-    padding: 1.5rem 1rem;
+  .admin-dashboard__tabs {
+    padding: 0 1.5rem;
+    overflow-x: auto;
+  }
+
+  .admin-dashboard__tab {
+    padding: 12px 16px;
+    font-size: 0.875rem;
+    white-space: nowrap;
   }
 }

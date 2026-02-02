@@ -1,0 +1,47 @@
+[
+  {
+    "id": "event-1",
+    "title": "Annual Science Fair 2026",
+    "category": "Academic",
+    "description": "<p>Join us for our <strong>Annual Science Fair</strong> where students showcase their innovative projects and experiments!</p><ul><li>Interactive demonstrations</li><li>Student presentations</li><li>Awards ceremony</li></ul>",
+    "eventDate": "2026-03-15",
+    "eventTime": "09:00",
+    "location": "School Gymnasium",
+    "featuredImage": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1200&h=800&fit=crop",
+    "featured": true,
+    "published": true,
+    "order": 0,
+    "createdAt": "2026-02-01T10:00:00.000Z",
+    "updatedAt": "2026-02-01T10:00:00.000Z"
+  },
+  {
+    "id": "event-2",
+    "title": "Spring Sports Day",
+    "category": "Sports",
+    "description": "<p>Get ready for an exciting day of <strong>athletic competitions</strong> and team spirit!</p><p>All students and families are invited to participate and cheer on our athletes.</p>",
+    "eventDate": "2026-04-20",
+    "eventTime": "08:00",
+    "location": "School Field",
+    "featuredImage": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&h=800&fit=crop",
+    "featured": true,
+    "published": true,
+    "order": 1,
+    "createdAt": "2026-02-01T11:00:00.000Z",
+    "updatedAt": "2026-02-01T11:00:00.000Z"
+  },
+  {
+    "id": "event-3",
+    "title": "Parent-Teacher Conference Week",
+    "category": "Announcement",
+    "description": "<p><strong>Important:</strong> Parent-Teacher conferences will be held throughout the week.</p><p>Please schedule your appointment through the school office.</p>",
+    "eventDate": "2026-03-08",
+    "eventTime": "",
+    "location": "Individual Classrooms",
+    "featuredImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&h=800&fit=crop",
+    "featured": true,
+    "published": true,
+    "order": 2,
+    "createdAt": "2026-02-01T12:00:00.000Z",
+    "updatedAt": "2026-02-01T12:00:00.000Z"
+  }
+]

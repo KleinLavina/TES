@@ -8,6 +8,27 @@ main {
   padding-top: 0;
 }
 
+/* Gentle Scroll Snap */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+  }
+  
+  body {
+    scroll-snap-type: y proximity;
+  }
+  
+  /* Snap points for major sections */
+  .hero-section,
+  .announcement-section,
+  .featured-events-carousel,
+  .footer {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+}
+
 /* Content Sections */
 .content-section {
   padding: 5rem 2rem;

@@ -115,7 +115,7 @@ const AnnouncementForm = ({ announcement, onSave, onCancel, isEdit }) => {
     <div className="announcement-form">
       <div className="announcement-form__header">
         <h2 className="announcement-form__title">
-          {isEdit ? 'Edit Announcement' : 'Create New Announcement'}
+          {isEdit ? 'Edit Story' : 'Create New Story'}
         </h2>
       </div>
 

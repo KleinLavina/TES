@@ -17,7 +17,7 @@ const AnnouncementList = ({ announcements, onEdit, onDelete, onCreate }) => {
   return (
     <div className="announcement-list">
       <div className="announcement-list__header">
-        <h2 className="announcement-list__title">All Announcements</h2>
+        <h2 className="announcement-list__title">All Stories & Activities</h2>
         <button 
           className="announcement-list__create-btn"
           onClick={onCreate}
@@ -26,7 +26,7 @@ const AnnouncementList = ({ announcements, onEdit, onDelete, onCreate }) => {
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
           </svg>
-          Create New Announcement
+          Create New Story
         </button>
       </div>
 
@@ -38,9 +38,9 @@ const AnnouncementList = ({ announcements, onEdit, onDelete, onCreate }) => {
             <line x1="12" y1="18" x2="12" y2="12"></line>
             <line x1="9" y1="15" x2="15" y2="15"></line>
           </svg>
-          <p>No announcements yet</p>
+          <p>No stories yet</p>
           <button onClick={onCreate} className="announcement-list__empty-btn">
-            Create your first announcement
+            Create your first story
           </button>
         </div>
       ) : (

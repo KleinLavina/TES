@@ -11,14 +11,14 @@ import './AnnouncementCarousel.css';
  * Props:
  * - announcements: Array of announcement objects
  * - itemsPerPage: Number of items per page (default: 3)
- * - autoPlayInterval: Auto-cycle interval in ms (default: 8000)
+ * - autoPlayInterval: Auto-cycle interval in ms (default: 5000)
  * - onAnnouncementClick: Callback when announcement is clicked
  * - isVisible: Boolean for scroll-triggered animations
  */
 const AnnouncementCarousel = ({ 
   announcements, 
   itemsPerPage = 3, 
-  autoPlayInterval = 8000,
+  autoPlayInterval = 5000,
   onAnnouncementClick,
   isVisible = true
 }) => {
@@ -33,21 +33,6 @@ const AnnouncementCarousel = ({
   // Get announcements for current page
   const startIndex = currentPage * itemsPerPage;
   const currentAnnouncements = announcements.slice(startIndex, startIndex + itemsPerPage);
-
-  // Auto-cycle logic
-  useEffect(() => {
-    if (isPaused || totalPages <= 1) return;
-
-    timerRef.current = setInterval(() => {
-      goToNextPage();
-    }, autoPlayInterval);
-
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-      }
-    };
-  }, [currentPage, isPaused, totalPages, autoPlayInterval]);
 
   const goToNextPage = () => {
     if (isAnimating) return;
@@ -69,6 +54,21 @@ const AnnouncementCarousel = ({
     setCurrentPage(pageIndex);
     setTimeout(() => setIsAnimating(false), 600);
   };
+
+  // Auto-cycle logic
+  useEffect(() => {
+    if (isPaused || totalPages <= 1 || isAnimating) return;
+
+    timerRef.current = setInterval(() => {
+      setCurrentPage((prev) => (prev + 1) % totalPages);
+    }, autoPlayInterval);
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [currentPage, isPaused, totalPages, autoPlayInterval, isAnimating]);
 
   const handleMouseEnter = () => {
     setIsPaused(true);

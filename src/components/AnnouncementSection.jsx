@@ -106,17 +106,17 @@ const AnnouncementSection = () => {
     >
       <div className="announcement-section__header">
         <h2 className="announcement-section__title">
-          {splitTextToLetters('Latest Announcements')}
+          {splitTextToLetters('Stories & Recent Activities')}
         </h2>
         <p className="announcement-section__subtitle">
-          {splitTextToLetters('Stay updated with the latest news and events from Tag-os Elementary School')}
+          {splitTextToLetters('Discover the latest happenings and inspiring moments from our school community')}
         </p>
       </div>
 
       <AnnouncementCarousel
         announcements={announcements}
         itemsPerPage={3}
-        autoPlayInterval={10000}
+        autoPlayInterval={5000}
         onAnnouncementClick={handleAnnouncementClick}
         isVisible={isVisible}
       />
