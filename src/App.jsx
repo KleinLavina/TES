@@ -2,7 +2,9 @@ import { useState } from 'react';
 import Header from './components/Header';
 import MenuOverlay from './components/MenuOverlay';
 import HeroSection from './components/HeroSection';
+import AnnouncementSection from './components/AnnouncementSection';
 import Footer from './components/Footer';
+import AdminRoute from './admin/AdminRoute';
 import './App.css';
 
 /**
@@ -13,10 +15,16 @@ import './App.css';
  * - Auto-hide header on scroll
  * - Floating menu overlay
  * - Hero section with video background
+ * - Featured announcements carousel
+ * - Admin CMS at /tes/admin/
  * - Improved footer with multiple sections
  */
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  // Simple routing check (will be replaced with React Router in Phase 3)
+  const isAdminRoute = window.location.pathname === '/tes/admin' || 
+                       window.location.pathname === '/tes/admin/';
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -26,6 +34,12 @@ function App() {
     setIsMenuOpen(false);
   };
 
+  // Render admin interface if on admin route
+  if (isAdminRoute) {
+    return <AdminRoute />;
+  }
+
+  // Render public website
   return (
     <div className="app">
       <Header onMenuToggle={toggleMenu} />
@@ -33,19 +47,10 @@ function App() {
       <main>
         <HeroSection />
         
-        {/* Additional sections */}
-        <section className="content-section" id="home">
-          <div className="content-container">
-            <h2>Welcome to Tag-os Elementary School</h2>
-            <p>
-              At Tag-os Elementary School, we are committed to providing a nurturing 
-              and enriching educational experience for every child. Our dedicated faculty 
-              and staff work together to create an environment where young minds can grow, 
-              explore, and achieve their full potential.
-            </p>
-          </div>
-        </section>
+        {/* Featured Announcements Section - Replaces #home */}
+        <AnnouncementSection />
 
+        {/* Additional sections */}
         <section className="content-section content-section--alt" id="about-the-school">
           <div className="content-container">
             <h2>About the School</h2>

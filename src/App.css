@@ -26,7 +26,7 @@ main {
 .content-section h2 {
   font-family: var(--font-decorative);
   font-size: clamp(2rem, 4vw, 2.5rem);
-  color: #1a4d2e;
+  color: var(--color-primary);
   margin: 0 0 1.5rem 0;
   font-weight: var(--font-weight-medium);
   letter-spacing: 0.3px;

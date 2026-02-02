@@ -62,7 +62,7 @@
 
 .footer__input:focus {
   outline: none;
-  border-color: #1a4d2e;
+  border-color: var(--color-primary);
 }
 
 .footer__subscribe-btn {

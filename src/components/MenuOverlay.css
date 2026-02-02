@@ -78,7 +78,7 @@
 .menu-overlay__item a {
   display: block;
   padding: 1.2rem 2rem;
-  color: #1a4d2e;
+  color: var(--color-primary);
   text-decoration: none;
   font-family: var(--font-body);
   font-size: 1.1rem;
