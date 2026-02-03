@@ -11,7 +11,9 @@ const FeaturedEventsCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const timerRef = useRef(null);
+  const carouselRef = useRef(null);
 
   // Load featured events
   useEffect(() => {
@@ -33,6 +35,31 @@ const FeaturedEventsCarousel = () => {
       window.removeEventListener('featuredEventsUpdated', handleUpdate);
     };
   }, [currentIndex]);
+
+  // Intersection Observer for image fade animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '0px'
+      }
+    );
+
+    if (carouselRef.current) {
+      observer.observe(carouselRef.current);
+    }
+
+    return () => {
+      if (carouselRef.current) {
+        observer.unobserve(carouselRef.current);
+      }
+    };
+  }, []);
 
   // Auto-advance carousel every 5 seconds
   useEffect(() => {
@@ -120,6 +147,7 @@ const FeaturedEventsCarousel = () => {
   return (
     <section 
       className="featured-events-carousel"
+      ref={carouselRef}
     >
       {/* Section Title - Outside carousel */}
       <div className="featured-events-carousel__header">
@@ -130,7 +158,7 @@ const FeaturedEventsCarousel = () => {
 
       {/* Carousel Container */}
       <div 
-        className="featured-events-carousel__container"
+        className={`featured-events-carousel__container ${isVisible ? 'featured-events-carousel__container--visible' : 'featured-events-carousel__container--hidden'}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

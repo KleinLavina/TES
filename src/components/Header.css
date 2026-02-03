@@ -34,7 +34,7 @@
 .header__container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,7 +57,7 @@
 }
 
 .header__logo {
-  height: 45px;
+  height: 75px;
   width: auto;
   display: block;
 }
@@ -250,7 +250,7 @@
 /* Tablet View */
 @media (min-width: 769px) and (max-width: 1024px) {
   .header__container {
-    padding: 0.875rem 1.5rem;
+    padding: 0.5rem 1.5rem;
   }
 
   .header__title {
@@ -258,7 +258,7 @@
   }
 
   .header__logo {
-    height: 40px;
+    height: 65px;
   }
 
   .header__nav-link {
@@ -273,7 +273,7 @@
 /* Mobile View */
 @media (max-width: 768px) {
   .header__container {
-    padding: 0.875rem 1.5rem;
+    padding: 0.5rem 1.5rem;
   }
 
   .header__brand {
@@ -285,7 +285,7 @@
   }
 
   .header__logo {
-    height: 38px;
+    height: 58px;
   }
 
   .hamburger {
@@ -300,6 +300,6 @@
   }
 
   .header__logo {
-    height: 35px;
+    height: 50px;
   }
 }

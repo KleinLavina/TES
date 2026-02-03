@@ -4,6 +4,7 @@ import MenuOverlay from './components/MenuOverlay';
 import HeroSection from './components/HeroSection';
 import FeaturedEventsCarousel from './components/FeaturedEventsCarousel';
 import AnnouncementSection from './components/AnnouncementSection';
+import SchoolInfoSection from './components/SchoolInfoSection';
 import Footer from './components/Footer';
 import AdminRoute from './admin/AdminRoute';
 import './App.css';
@@ -38,6 +39,7 @@ function App() {
         <HeroSection />
         <AnnouncementSection />
         <FeaturedEventsCarousel />
+        <SchoolInfoSection />
       </main>
       <Footer />
     </div>
