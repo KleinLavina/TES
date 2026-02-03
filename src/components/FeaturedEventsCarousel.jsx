@@ -147,6 +147,7 @@ const FeaturedEventsCarousel = () => {
   return (
     <section 
       className="featured-events-carousel"
+      id="events"
       ref={carouselRef}
     >
       {/* Section Title - Outside carousel */}

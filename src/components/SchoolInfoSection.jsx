@@ -166,7 +166,7 @@ const SchoolInfoSection = () => {
   ];
 
   return (
-    <section className="school-info">
+    <section className="school-info" id="about">
       <div className="school-info__container">
         {/* Left Column - Accordion */}
         <div className="school-info__accordion">

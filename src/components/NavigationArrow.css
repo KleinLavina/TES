@@ -1,7 +1,7 @@
 .carousel-arrow {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 20px;
+  transform: none;
   background: rgba(37, 99, 235, 0.9);
   border: 2px solid rgba(37, 99, 235, 1);
   width: 50px;
@@ -10,31 +10,33 @@
   cursor: pointer;
   color: white;
   transition: all 0.3s ease;
-  z-index: 10;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .carousel-arrow--left {
-  left: 1rem;
+  left: calc(50% - 150px);
 }
 
 .carousel-arrow--right {
-  right: 1rem;
+  right: calc(50% - 150px);
 }
 
 .carousel-arrow:hover:not(:disabled) {
   background: rgba(37, 99, 235, 1);
   border-color: rgba(37, 99, 235, 1);
-  transform: translateY(-50%) scale(1.1);
+  transform: scale(1.1);
   box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
 }
 
 .carousel-arrow:active:not(:disabled) {
-  transform: translateY(-50%) scale(0.95);
+  transform: scale(0.95);
 }
 
 .carousel-arrow:disabled {
@@ -52,20 +54,61 @@
 /* Responsive */
 @media (max-width: 768px) {
   .carousel-arrow {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
+    z-index: 150;
+    bottom: 20px;
+  }
+
+  /* Larger hitbox for easier tapping */
+  .carousel-arrow::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px;
+    border-radius: 50%;
   }
 
   .carousel-arrow--left {
-    left: 0.5rem;
+    left: calc(50% - 120px);
   }
 
   .carousel-arrow--right {
-    right: 0.5rem;
+    right: calc(50% - 120px);
   }
 
   .carousel-arrow svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-arrow {
+    width: 48px;
+    height: 48px;
+    z-index: 150;
+    bottom: 20px;
+  }
+
+  /* Larger hitbox for easier tapping */
+  .carousel-arrow::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px;
+    border-radius: 50%;
+  }
+
+  .carousel-arrow--left {
+    left: calc(50% - 100px);
+  }
+
+  .carousel-arrow--right {
+    right: calc(50% - 100px);
   }
 }

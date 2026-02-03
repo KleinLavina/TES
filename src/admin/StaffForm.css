@@ -1,0 +1,223 @@
+.staff-form {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.staff-form__header {
+  margin-bottom: 2rem;
+}
+
+.staff-form__title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+  color: #1e3a8a;
+  margin: 0;
+}
+
+.staff-form__form {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Section */
+.staff-form__section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.staff-form__section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.staff-form__section-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: #1e3a8a;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Image Upload */
+.staff-form__image-upload {
+  max-width: 400px;
+}
+
+/* Field */
+.staff-form__field {
+  margin-bottom: 1.5rem;
+}
+
+.staff-form__field:last-child {
+  margin-bottom: 0;
+}
+
+.staff-form__label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.staff-form__input,
+.staff-form__select,
+.staff-form__textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #1f2937;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.staff-form__input:focus,
+.staff-form__select:focus,
+.staff-form__textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.staff-form__input--error,
+.staff-form__select--error,
+.staff-form__textarea--error {
+  border-color: #ef4444;
+}
+
+.staff-form__input--error:focus,
+.staff-form__select--error:focus,
+.staff-form__textarea--error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.staff-form__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.staff-form__select {
+  cursor: pointer;
+}
+
+.staff-form__error {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: #ef4444;
+  margin: 0.5rem 0 0 0;
+}
+
+.staff-form__hint {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0.5rem 0 0 0;
+}
+
+/* Checkbox */
+.staff-form__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.staff-form__checkbox-input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.staff-form__checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+}
+
+.staff-form__checkbox-label .material-icons {
+  font-size: 1.25rem;
+  color: #3b82f6;
+}
+
+/* Actions */
+.staff-form__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e5e7eb;
+}
+
+.staff-form__btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.staff-form__btn .material-icons {
+  font-size: 1.25rem;
+}
+
+.staff-form__btn--cancel {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.staff-form__btn--cancel:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.staff-form__btn--save {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.staff-form__btn--save:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .staff-form {
+    padding: 1rem;
+  }
+
+  .staff-form__form {
+    padding: 1.5rem;
+  }
+
+  .staff-form__actions {
+    flex-direction: column-reverse;
+  }
+
+  .staff-form__btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -101,9 +101,26 @@ const AnnouncementSection = () => {
   return (
     <section 
       className={`announcement-section ${isVisible ? 'announcement-section--visible' : 'announcement-section--hidden'}`} 
-      id="home"
+      id="stories"
       ref={sectionRef}
     >
+      {/* Decorative top border divider */}
+      <div className="announcement-section__top-divider">
+        <div className="announcement-section__divider-line"></div>
+        <div className="announcement-section__divider-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      {/* Notebook-style patches */}
+      <div className="announcement-section__notebook-patches">
+        <div className="notebook-patch notebook-patch--1"></div>
+        <div className="notebook-patch notebook-patch--2"></div>
+        <div className="notebook-patch notebook-patch--3"></div>
+      </div>
+
       <div className="announcement-section__header">
         <h2 className="announcement-section__title">
           {splitTextToLetters('Stories & Recent Activities')}

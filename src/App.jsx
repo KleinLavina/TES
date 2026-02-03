@@ -5,6 +5,7 @@ import HeroSection from './components/HeroSection';
 import FeaturedEventsCarousel from './components/FeaturedEventsCarousel';
 import AnnouncementSection from './components/AnnouncementSection';
 import SchoolInfoSection from './components/SchoolInfoSection';
+import StaffSection from './components/StaffSection';
 import Footer from './components/Footer';
 import AdminRoute from './admin/AdminRoute';
 import './App.css';
@@ -40,6 +41,7 @@ function App() {
         <AnnouncementSection />
         <FeaturedEventsCarousel />
         <SchoolInfoSection />
+        <StaffSection />
       </main>
       <Footer />
     </div>

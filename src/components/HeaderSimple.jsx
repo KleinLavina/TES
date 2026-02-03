@@ -10,10 +10,11 @@ const HeaderSimple = ({ onMenuToggle }) => {
   const hoverTimerRef = useRef(null);
 
   const menuItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'About', href: '#about' },
+    { label: 'Home', href: '#hero' },
+    { label: 'Stories', href: '#stories' },
     { label: 'Events', href: '#events' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'About', href: '#about' },
+    { label: 'Faculty', href: '#faculty' },
   ];
 
   // Scroll detection for auto-hide header
@@ -70,6 +71,20 @@ const HeaderSimple = ({ onMenuToggle }) => {
     }
   };
 
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    
+    const targetId = href.substring(1);
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      targetElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <header className={`header ${isVisible ? 'header--visible' : 'header--hidden'} ${isScrolled ? 'header--scrolled' : 'header--transparent'}`}>
       <div className="header__container">
@@ -92,7 +107,13 @@ const HeaderSimple = ({ onMenuToggle }) => {
           <ul className="header__nav-list">
             {menuItems.map((item, index) => (
               <li key={index} className="header__nav-item">
-                <a href={item.href} className="header__nav-link">{item.label}</a>
+                <a 
+                  href={item.href} 
+                  className="header__nav-link"
+                  onClick={(e) => handleNavClick(e, item.href)}
+                >
+                  {item.label}
+                </a>
               </li>
             ))}
           </ul>

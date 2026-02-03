@@ -3,16 +3,19 @@ import AnnouncementList from './AnnouncementList';
 import AnnouncementForm from './AnnouncementForm';
 import EventList from './EventList';
 import EventForm from './EventForm';
+import StaffList from './StaffList';
+import StaffForm from './StaffForm';
 import mockAnnouncements from '../data/mockAnnouncements.json';
 import { loadEvents, createEvent, updateEvent, deleteEvent, reorderEvents, toggleFeatured, togglePublished } from '../utils/eventStorage';
+import { staffStorage } from '../utils/staffStorage';
 import './AdminDashboard.css';
 
 /**
  * AdminDashboard - Main admin interface
- * Manages both Stories & Activities and Events & Announcements
+ * Manages Stories & Activities, Events & Announcements, and Staff
  */
 const AdminDashboard = ({ onLogout }) => {
-  const [activeTab, setActiveTab] = useState('stories'); // 'stories' | 'events'
+  const [activeTab, setActiveTab] = useState('stories'); // 'stories' | 'events' | 'staff'
   
   // Stories & Activities state
   const [announcements, setAnnouncements] = useState([]);
@@ -23,6 +26,11 @@ const AdminDashboard = ({ onLogout }) => {
   const [events, setEvents] = useState([]);
   const [eventView, setEventView] = useState('list'); // 'list' | 'create' | 'edit'
   const [selectedEvent, setSelectedEvent] = useState(null);
+
+  // Staff state
+  const [staffView, setStaffView] = useState('list'); // 'list' | 'create' | 'edit'
+  const [selectedStaff, setSelectedStaff] = useState(null);
+  const [staffType, setStaffType] = useState('teacher'); // 'principal' | 'teacher'
 
   // Load Stories & Activities
   useEffect(() => {
@@ -150,6 +158,37 @@ const AdminDashboard = ({ onLogout }) => {
     loadEventsData();
   };
 
+  // Staff handlers
+  const handleStaffCreate = (type) => {
+    setStaffType(type);
+    setSelectedStaff(null);
+    setStaffView('create');
+  };
+
+  const handleStaffEdit = (staff, type) => {
+    setStaffType(type);
+    setSelectedStaff(staff);
+    setStaffView('edit');
+  };
+
+  const handleStaffSave = (staffData) => {
+    if (staffType === 'principal') {
+      staffStorage.savePrincipal(staffData);
+    } else {
+      if (staffView === 'create') {
+        staffStorage.addTeacher(staffData);
+      } else {
+        staffStorage.updateTeacher(selectedStaff.id, staffData);
+      }
+    }
+    setStaffView('list');
+  };
+
+  const handleStaffCancel = () => {
+    setStaffView('list');
+    setSelectedStaff(null);
+  };
+
   return (
     <div className="admin-dashboard">
       <header className="admin-dashboard__header">
@@ -210,6 +249,18 @@ const AdminDashboard = ({ onLogout }) => {
             </svg>
             Events & Announcements
           </button>
+          <button
+            className={`admin-dashboard__tab ${activeTab === 'staff' ? 'admin-dashboard__tab--active' : ''}`}
+            onClick={() => setActiveTab('staff')}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            Staff Directory
+          </button>
         </div>
       </header>
 
@@ -230,7 +281,7 @@ const AdminDashboard = ({ onLogout }) => {
               isEdit={view === 'edit'}
             />
           )
-        ) : (
+        ) : activeTab === 'events' ? (
           eventView === 'list' ? (
             <EventList
               events={events}
@@ -247,6 +298,21 @@ const AdminDashboard = ({ onLogout }) => {
               onSave={handleEventSave}
               onCancel={handleEventCancel}
               isEdit={eventView === 'edit'}
+            />
+          )
+        ) : (
+          staffView === 'list' ? (
+            <StaffList
+              onEdit={handleStaffEdit}
+              onCreate={handleStaffCreate}
+            />
+          ) : (
+            <StaffForm
+              staff={selectedStaff}
+              staffType={staffType}
+              onSave={handleStaffSave}
+              onCancel={handleStaffCancel}
+              isEdit={staffView === 'edit'}
             />
           )
         )}

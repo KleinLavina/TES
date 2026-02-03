@@ -1,0 +1,10 @@
+{
+  "id": "principal-1",
+  "name": "Dr. Maria Elena Santos",
+  "title": "School Principal",
+  "bio": "Dr. Santos has been leading Tag-os Elementary School for over 10 years, bringing innovation and excellence to education. She holds a Doctorate in Educational Leadership and is passionate about creating a nurturing environment where every child can thrive.",
+  "profile_image": "https://randomuser.me/api/portraits/women/44.jpg",
+  "is_published": true,
+  "created_at": "2026-01-15T10:00:00Z",
+  "updated_at": "2026-01-15T10:00:00Z"
+}

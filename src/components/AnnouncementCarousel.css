@@ -7,12 +7,14 @@
   position: relative;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 5rem;
+  padding: 0 2rem;
+  padding-bottom: 80px;
 }
 
 .announcement-carousel__track {
   overflow: hidden;
   border-radius: 12px;
+  margin-bottom: 1.5rem;
 }
 
 .announcement-carousel__page {
@@ -44,7 +46,8 @@
 /* Responsive */
 @media (max-width: 1024px) {
   .announcement-carousel__container {
-    padding: 0 3rem;
+    padding: 0 2rem;
+    padding-bottom: 80px;
   }
 
   .announcement-carousel__page {
@@ -58,7 +61,8 @@
   }
 
   .announcement-carousel__container {
-    padding: 0 2.5rem;
+    padding: 0 1.5rem;
+    padding-bottom: 80px;
   }
 
   .announcement-carousel__page {
@@ -69,6 +73,7 @@
 
 @media (max-width: 480px) {
   .announcement-carousel__container {
-    padding: 0 2rem;
+    padding: 0 1rem;
+    padding-bottom: 80px;
   }
 }

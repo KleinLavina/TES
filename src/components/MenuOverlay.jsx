@@ -12,13 +12,27 @@ const MenuOverlay = ({ isOpen, onClose }) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const menuItems = [
-    'Home',
-    'About the School',
-    'Academics',
-    'Faculty & Staff',
-    'Announcements',
-    'Contact'
+    { label: 'Home', href: '#hero' },
+    { label: 'Stories & Activities', href: '#stories' },
+    { label: 'Featured Events', href: '#events' },
+    { label: 'About the School', href: '#about' },
+    { label: 'Faculty & Staff', href: '#faculty' },
   ];
+
+  const handleMenuClick = (e, href) => {
+    e.preventDefault();
+    onClose();
+    
+    const targetId = href.substring(1);
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      targetElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -53,8 +67,11 @@ const MenuOverlay = ({ isOpen, onClose }) => {
               className="menu-overlay__item"
               style={{ animationDelay: `${index * 0.08}s` }}
             >
-              <a href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} onClick={onClose}>
-                {item}
+              <a 
+                href={item.href} 
+                onClick={(e) => handleMenuClick(e, item.href)}
+              >
+                {item.label}
               </a>
             </li>
           ))}

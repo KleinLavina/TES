@@ -1,0 +1,98 @@
+[
+  {
+    "id": "teacher-1",
+    "name": "Ms. Ana Marie Cruz",
+    "grade_level": "Grade 1",
+    "subject": "All Subjects",
+    "bio": "Ms. Cruz specializes in early childhood education and has been teaching Grade 1 for 5 years. She creates a warm, engaging classroom where young learners feel safe to explore and grow.",
+    "profile_image": "https://randomuser.me/api/portraits/women/65.jpg",
+    "sort_order": 1,
+    "is_published": true,
+    "created_at": "2026-01-15T10:00:00Z",
+    "updated_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "id": "teacher-2",
+    "name": "Mr. Roberto Fernandez",
+    "grade_level": "Grade 2",
+    "subject": "Mathematics & Science",
+    "bio": "Mr. Fernandez brings 8 years of teaching experience with a focus on making math and science fun and accessible. His interactive teaching style helps students develop strong foundational skills.",
+    "profile_image": "https://randomuser.me/api/portraits/men/32.jpg",
+    "sort_order": 2,
+    "is_published": true,
+    "created_at": "2026-01-15T10:00:00Z",
+    "updated_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "id": "teacher-3",
+    "name": "Ms. Liza Mae Reyes",
+    "grade_level": "Grade 3",
+    "subject": "English & Filipino",
+    "bio": "Ms. Reyes is passionate about literacy and language development. With 6 years of experience, she helps students become confident readers and effective communicators in both English and Filipino.",
+    "profile_image": "https://randomuser.me/api/portraits/women/28.jpg",
+    "sort_order": 3,
+    "is_published": true,
+    "created_at": "2026-01-15T10:00:00Z",
+    "updated_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "id": "teacher-4",
+    "name": "Mr. Jose Miguel Torres",
+    "grade_level": "Grade 4",
+    "subject": "Social Studies & MAPEH",
+    "bio": "Mr. Torres combines his love for history, arts, and physical education to create well-rounded learning experiences. He has been inspiring Grade 4 students for 7 years.",
+    "profile_image": "https://randomuser.me/api/portraits/men/46.jpg",
+    "sort_order": 4,
+    "is_published": true,
+    "created_at": "2026-01-15T10:00:00Z",
+    "updated_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "id": "teacher-5",
+    "name": "Ms. Carmen Dela Cruz",
+    "grade_level": "Grade 5",
+    "subject": "Science & Technology",
+    "bio": "Ms. Dela Cruz holds a degree in Biology and brings real-world science into the classroom. Her hands-on experiments and technology integration make learning exciting for Grade 5 students.",
+    "profile_image": "https://randomuser.me/api/portraits/women/50.jpg",
+    "sort_order": 5,
+    "is_published": true,
+    "created_at": "2026-01-15T10:00:00Z",
+    "updated_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "id": "teacher-6",
+    "name": "Mr. Daniel Santos",
+    "grade_level": "Grade 6",
+    "subject": "Mathematics & Computer",
+    "bio": "Mr. Santos prepares Grade 6 students for high school with advanced math concepts and computer literacy. His 9 years of experience help students build confidence for their next educational journey.",
+    "profile_image": "https://randomuser.me/api/portraits/men/22.jpg",
+    "sort_order": 6,
+    "is_published": true,
+    "created_at": "2026-01-15T10:00:00Z",
+    "updated_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "id": "teacher-7",
+    "name": "Ms. Patricia Gonzales",
+    "grade_level": "Kindergarten",
+    "subject": "Early Childhood Education",
+    "bio": "Ms. Gonzales specializes in kindergarten education with 12 years of experience. She creates a playful, nurturing environment where young children develop social skills and a love for learning.",
+    "profile_image": "https://randomuser.me/api/portraits/women/72.jpg",
+    "sort_order": 0,
+    "is_published": true,
+    "created_at": "2026-01-15T10:00:00Z",
+    "updated_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "id": "teacher-8",
+    "name": "Mr. Rafael Mendoza",
+    "grade_level": "Grade 4",
+    "subject": "Science & Mathematics",
+    "bio": "Mr. Mendoza brings innovative teaching methods to Grade 4, making complex concepts accessible through hands-on experiments and real-world applications. He has been teaching for 6 years.",
+    "profile_image": "https://randomuser.me/api/portraits/men/54.jpg",
+    "sort_order": 4,
+    "is_published": true,
+    "created_at": "2026-01-15T10:00:00Z",
+    "updated_at": "2026-01-15T10:00:00Z"
+  }
+]
