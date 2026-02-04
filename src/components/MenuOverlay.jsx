@@ -12,12 +12,12 @@ const MenuOverlay = ({ isOpen, onClose }) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const menuItems = [
-    { label: 'Home', href: '#hero' },
-    { label: 'About the School', href: '#about' },
-    { label: 'Events & Activities', href: '#stories' },
-    { label: 'Academics & Admissions', href: '#academics' },
-    { label: 'Faculty & Facilities', href: '#faculty' },
-    { label: 'Contact Us', href: '#footer' },
+    { label: 'Home', href: '#hero', icon: 'home' },
+    { label: 'About the School', href: '#about', icon: 'info' },
+    { label: 'Events & Activities', href: '#stories', icon: 'event' },
+    { label: 'Academics & Admissions', href: '#academics', icon: 'school' },
+    { label: 'Faculty & Facilities', href: '#faculty', icon: 'groups' },
+    { label: 'Contact Us', href: '#footer', icon: 'contact_mail' },
   ];
 
   const handleMenuClick = (e, href) => {
@@ -72,7 +72,8 @@ const MenuOverlay = ({ isOpen, onClose }) => {
                 href={item.href} 
                 onClick={(e) => handleMenuClick(e, item.href)}
               >
-                {item.label}
+                <span className="material-icons menu-overlay__icon">{item.icon}</span>
+                <span className="menu-overlay__label">{item.label}</span>
               </a>
             </li>
           ))}

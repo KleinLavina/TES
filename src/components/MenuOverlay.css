@@ -76,17 +76,30 @@
 }
 
 .menu-overlay__item a {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   padding: 1.2rem 2rem;
   color: var(--color-primary);
   text-decoration: none;
-  font-family: 'Poppins', var(--font-body), sans-serif;
+  font-family: var(--font-body);
   font-size: 1.1rem;
   font-weight: 500;
   transition: all 0.3s ease;
   letter-spacing: 0.02em;
   position: relative;
   overflow: hidden;
+}
+
+.menu-overlay__icon {
+  font-size: 24px;
+  color: #3b82f6;
+  transition: transform 0.3s ease, color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.menu-overlay__label {
+  flex: 1;
 }
 
 /* Slide-in background effect */
@@ -111,6 +124,11 @@
   padding-left: 2.5rem;
   color: #1e3a8a;
   transform: translateX(4px);
+}
+
+.menu-overlay__item a:hover .menu-overlay__icon {
+  transform: scale(1.1);
+  color: #1e3a8a;
 }
 
 /* Animations removed - using CSS transitions instead for smoother performance */
