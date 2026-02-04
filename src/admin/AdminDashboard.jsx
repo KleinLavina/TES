@@ -5,6 +5,7 @@ import EventList from './EventList';
 import EventForm from './EventForm';
 import StaffList from './StaffList';
 import StaffForm from './StaffForm';
+import ConfirmModal from './ConfirmModal';
 import mockAnnouncements from '../data/mockAnnouncements.json';
 import { loadEvents, createEvent, updateEvent, deleteEvent, reorderEvents, toggleFeatured, togglePublished } from '../utils/eventStorage';
 import { staffStorage } from '../utils/staffStorage';
@@ -31,6 +32,15 @@ const AdminDashboard = ({ onLogout }) => {
   const [staffView, setStaffView] = useState('list'); // 'list' | 'create' | 'edit'
   const [selectedStaff, setSelectedStaff] = useState(null);
   const [staffType, setStaffType] = useState('teacher'); // 'principal' | 'teacher'
+
+  // Confirm modal state
+  const [confirmModal, setConfirmModal] = useState({
+    isOpen: false,
+    type: 'danger',
+    title: '',
+    message: '',
+    onConfirm: null
+  });
 
   // Load Stories & Activities
   useEffect(() => {
@@ -71,10 +81,17 @@ const AdminDashboard = ({ onLogout }) => {
   };
 
   const handleDelete = (id) => {
-    if (window.confirm('Are you sure you want to delete this announcement?')) {
-      const updated = announcements.filter(a => a.id !== id);
-      saveAnnouncements(updated);
-    }
+    setConfirmModal({
+      isOpen: true,
+      type: 'danger',
+      title: 'Delete Story?',
+      message: 'Are you sure you want to delete this story? This action cannot be undone.',
+      onConfirm: () => {
+        const updated = announcements.filter(a => a.id !== id);
+        saveAnnouncements(updated);
+        setConfirmModal({ ...confirmModal, isOpen: false });
+      }
+    });
   };
 
   const handleSave = (announcementData) => {
@@ -122,10 +139,17 @@ const AdminDashboard = ({ onLogout }) => {
   };
 
   const handleEventDelete = (id) => {
-    if (window.confirm('Are you sure you want to delete this event?')) {
-      deleteEvent(id);
-      loadEventsData();
-    }
+    setConfirmModal({
+      isOpen: true,
+      type: 'danger',
+      title: 'Delete Event?',
+      message: 'Are you sure you want to delete this event? This action cannot be undone.',
+      onConfirm: () => {
+        deleteEvent(id);
+        loadEventsData();
+        setConfirmModal({ ...confirmModal, isOpen: false });
+      }
+    });
   };
 
   const handleEventSave = (eventData) => {
@@ -317,6 +341,16 @@ const AdminDashboard = ({ onLogout }) => {
           )
         )}
       </main>
+
+      {/* Confirm Modal */}
+      <ConfirmModal
+        isOpen={confirmModal.isOpen}
+        onClose={() => setConfirmModal({ ...confirmModal, isOpen: false })}
+        onConfirm={confirmModal.onConfirm}
+        title={confirmModal.title}
+        message={confirmModal.message}
+        type={confirmModal.type}
+      />
     </div>
   );
 };

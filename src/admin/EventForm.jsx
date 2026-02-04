@@ -275,14 +275,12 @@ const EventForm = ({ event, onSave, onCancel, isEdit }) => {
       </form>
 
       {/* Image Upload Modal */}
-      {showImageModal && (
-        <ImageUploadModal
-          onSave={handleImageSave}
-          onClose={() => setShowImageModal(false)}
-          aspectRatio={3 / 2}
-          title="Upload Featured Image (3:2)"
-        />
-      )}
+      <ImageUploadModal
+        isOpen={showImageModal}
+        onClose={() => setShowImageModal(false)}
+        onImageSaved={handleImageSave}
+        currentImage={formData.featuredImage}
+      />
     </div>
   );
 };

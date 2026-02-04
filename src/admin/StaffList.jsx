@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { staffStorage } from '../utils/staffStorage';
+import ConfirmModal from './ConfirmModal';
 import './StaffList.css';
 
 /**
@@ -8,6 +9,13 @@ import './StaffList.css';
 const StaffList = ({ onEdit, onCreate }) => {
   const [principal, setPrincipal] = useState(null);
   const [teachers, setTeachers] = useState([]);
+  const [confirmModal, setConfirmModal] = useState({
+    isOpen: false,
+    type: 'danger',
+    title: '',
+    message: '',
+    onConfirm: null
+  });
 
   useEffect(() => {
     loadStaffData();
@@ -23,10 +31,17 @@ const StaffList = ({ onEdit, onCreate }) => {
   };
 
   const handleDeleteTeacher = (id) => {
-    if (window.confirm('Are you sure you want to delete this teacher?')) {
-      staffStorage.deleteTeacher(id);
-      loadStaffData();
-    }
+    setConfirmModal({
+      isOpen: true,
+      type: 'danger',
+      title: 'Delete Teacher?',
+      message: 'Are you sure you want to delete this teacher? This action cannot be undone.',
+      onConfirm: () => {
+        staffStorage.deleteTeacher(id);
+        loadStaffData();
+        setConfirmModal({ ...confirmModal, isOpen: false });
+      }
+    });
   };
 
   const handleTogglePublished = (teacher) => {
@@ -173,6 +188,16 @@ const StaffList = ({ onEdit, onCreate }) => {
           </div>
         )}
       </section>
+
+      {/* Confirm Modal */}
+      <ConfirmModal
+        isOpen={confirmModal.isOpen}
+        onClose={() => setConfirmModal({ ...confirmModal, isOpen: false })}
+        onConfirm={confirmModal.onConfirm}
+        title={confirmModal.title}
+        message={confirmModal.message}
+        type={confirmModal.type}
+      />
     </div>
   );
 };

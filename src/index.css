@@ -58,6 +58,16 @@ html {
   --color-text-light: #64748b;
 }
 
+html {
+  box-sizing: border-box;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -66,6 +76,7 @@ body {
   color: #333333;
   background-color: #ffffff;
   overflow-x: hidden;
+  width: 100%;
 }
 
 /* Typography - Headings */

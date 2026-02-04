@@ -9,6 +9,7 @@ import AcademicsSection from './components/AcademicsSection';
 import AdmissionsSection from './components/AdmissionsSection';
 import StaffSection from './components/StaffSection';
 import FacilitiesSection from './components/FacilitiesSection';
+import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import AdminRoute from './admin/AdminRoute';
 import './App.css';
@@ -48,6 +49,7 @@ function App() {
         <AdmissionsSection />
         <StaffSection />
         <FacilitiesSection />
+        <ContactSection />
       </main>
       <Footer />
     </div>

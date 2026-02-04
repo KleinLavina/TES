@@ -26,20 +26,13 @@
 .image-upload-modal__content {
   background: white;
   border-radius: 12px;
-  max-width: 900px;
+  max-width: 1000px;
   width: 100%;
   max-height: 90vh;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
   position: relative;
   animation: slideUp 0.3s ease-out;
-  
-  /* Hide scrollbar */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.image-upload-modal__content::-webkit-scrollbar {
-  display: none;
 }
 
 @keyframes slideUp {
@@ -78,17 +71,27 @@
 }
 
 .image-upload-modal__upload {
-  padding: 3rem;
+  padding: 2rem;
+  overflow-y: auto;
+  flex: 1;
+  
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.image-upload-modal__upload::-webkit-scrollbar {
+  display: none;
 }
 
 .image-upload-modal__header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .image-upload-modal__title {
   font-family: var(--font-display);
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: var(--font-weight-bold);
   color: var(--color-primary);
   margin: 0 0 0.5rem 0;
@@ -96,7 +99,7 @@
 
 .image-upload-modal__subtitle {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #666666;
   margin: 0;
 }
@@ -106,21 +109,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3rem 2rem;
+  padding: 2rem 1.5rem;
   border: 2px dashed #cccccc;
   border-radius: 12px;
   background: #f8f9fa;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .image-upload-modal__dropzone svg {
   color: #999999;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .image-upload-modal__dropzone-text {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #666666;
   margin: 0;
   text-align: center;
@@ -129,8 +132,8 @@
 .image-upload-modal__methods {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
 .image-upload-modal__method {
@@ -266,27 +269,71 @@
 @media (max-width: 768px) {
   .image-upload-modal {
     padding: 0;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
   .image-upload-modal__content {
     max-height: 100vh;
+    height: 100vh;
     border-radius: 0;
+    max-width: 100%;
+  }
+
+  .image-upload-modal__close {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 36px;
+    height: 36px;
   }
 
   .image-upload-modal__upload {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .image-upload-modal__header {
+    margin-bottom: 1rem;
+  }
+
+  .image-upload-modal__title {
+    font-size: 1.25rem;
+  }
+
+  .image-upload-modal__subtitle {
+    font-size: 0.85rem;
   }
 
   .image-upload-modal__dropzone {
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .image-upload-modal__methods {
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .image-upload-modal__file-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
   }
 
   .image-upload-modal__url-group {
     flex-direction: column;
   }
 
+  .image-upload-modal__url-input {
+    font-size: 0.95rem;
+    padding: 0.875rem;
+  }
+
   .image-upload-modal__url-button {
     width: 100%;
+    padding: 0.875rem;
+    font-size: 0.95rem;
+  }
+
+  .image-upload-modal__hint {
+    font-size: 0.85rem;
+    padding: 0.875rem;
   }
 }

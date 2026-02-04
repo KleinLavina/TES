@@ -1,26 +1,31 @@
 .image-cropper {
   background: white;
   border-radius: 12px;
-  padding: 2rem;
+  padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .image-cropper__header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .image-cropper__title {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: var(--font-weight-bold);
   color: var(--color-primary);
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.25rem 0;
 }
 
 .image-cropper__subtitle {
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #666666;
   margin: 0;
 }
@@ -28,122 +33,28 @@
 .image-cropper__container {
   position: relative;
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  aspect-ratio: 3 / 2;
+  height: 60vh;
+  max-height: 500px;
   background: #000000;
   border-radius: 8px;
   overflow: hidden;
-  user-select: none;
+  flex-shrink: 1;
+  min-height: 300px;
 }
 
-.image-cropper__image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  max-width: none;
-  max-height: none;
-  transform-origin: center;
-  transition: transform 0.1s ease-out;
-}
-
-.image-cropper__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-}
-
-.image-cropper__crop-area {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
-  border: 2px dashed rgba(255, 255, 255, 0.8);
-}
-
-.image-cropper__controls {
-  margin-top: 1.5rem;
-  padding: 1.5rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-}
-
-.image-cropper__zoom {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.image-cropper__zoom-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: var(--font-weight-semibold);
-  color: #333333;
-  white-space: nowrap;
-}
-
-.image-cropper__zoom-slider {
-  flex: 1;
-  height: 6px;
-  border-radius: 3px;
-  background: #e0e0e0;
-  outline: none;
-  -webkit-appearance: none;
-}
-
-.image-cropper__zoom-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.image-cropper__zoom-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-}
-
-.image-cropper__zoom-slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  cursor: pointer;
-  border: none;
-  transition: transform 0.2s ease;
-}
-
-.image-cropper__zoom-slider::-moz-range-thumb:hover {
-  transform: scale(1.2);
-}
-
-.image-cropper__zoom-value {
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
-  min-width: 45px;
-  text-align: right;
+.image-cropper__cropper {
+  width: 100%;
+  height: 100%;
 }
 
 .image-cropper__actions {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
   border-top: 1px solid #e0e0e0;
+  flex-shrink: 0;
 }
 
 .image-cropper__button {
@@ -181,11 +92,28 @@
 /* Responsive */
 @media (max-width: 768px) {
   .image-cropper {
-    padding: 1.5rem 1rem;
+    padding: 1rem;
+    max-height: 90vh;
+    border-radius: 0;
+  }
+
+  .image-cropper__header {
+    margin-bottom: 0.75rem;
+  }
+
+  .image-cropper__title {
+    font-size: 1.1rem;
+  }
+
+  .image-cropper__subtitle {
+    font-size: 0.8rem;
   }
 
   .image-cropper__container {
-    max-width: 100%;
+    height: calc(100vh - 250px);
+    min-height: 250px;
+    max-height: none;
+    border-radius: 6px;
   }
 
   .image-cropper__controls {
@@ -202,10 +130,15 @@
   }
 
   .image-cropper__actions {
-    flex-direction: column-reverse;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
   }
 
   .image-cropper__button {
-    width: 100%;
+    flex: 1;
+    padding: 0.875rem 1rem;
+    font-size: 0.95rem;
+    border-radius: 6px;
   }
 }
