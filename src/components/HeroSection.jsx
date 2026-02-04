@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import InfoBoxModal from './InfoBoxModal';
 import './HeroSection.css';
 
 /**
@@ -11,6 +12,153 @@ import './HeroSection.css';
 const HeroSection = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [infoBoxesVisible, setInfoBoxesVisible] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedContent, setSelectedContent] = useState(null);
+
+  // Info box content data
+  const infoBoxContent = {
+    growth: {
+      type: 'growth',
+      icon: 'trending_up',
+      title: 'Growth',
+      subtitle: 'Nurturing potential in every child',
+      images: [
+        'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&h=400&fit=crop', // Children playing outdoors
+        'https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=1200&h=400&fit=crop', // Kids learning together
+        'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&h=400&fit=crop', // Child growing/reaching
+        'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&h=400&fit=crop'  // Students developing skills
+      ],
+      sections: [
+        {
+          heading: 'Fostering Personal Development',
+          text: 'At Tag-os Elementary School, we believe every child has unique potential waiting to be discovered. Our growth-focused approach ensures that each student develops not just academically, but also emotionally, socially, and physically.'
+        },
+        {
+          heading: 'Our Growth Programs',
+          list: [
+            'Individualized learning plans tailored to each student\'s pace',
+            'Character development through values education',
+            'Leadership training and student government participation',
+            'Mentorship programs connecting older and younger students',
+            'Regular progress monitoring and parent-teacher conferences'
+          ]
+        },
+        {
+          heading: 'Building Confidence',
+          text: 'We create a supportive environment where students feel safe to take risks, make mistakes, and learn from them. Through positive reinforcement and constructive feedback, we help build the confidence needed for lifelong success.'
+        }
+      ]
+    },
+    knowledge: {
+      type: 'knowledge',
+      icon: 'school',
+      title: 'Knowledge',
+      subtitle: 'Building strong foundations for the future',
+      images: [
+        'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1200&h=400&fit=crop', // Students in classroom
+        'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&h=400&fit=crop', // Books and learning
+        'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1200&h=400&fit=crop', // Library/reading
+        'https://images.unsplash.com/photo-1503676382389-4809596d5290?w=1200&h=400&fit=crop'  // Science/STEM learning
+      ],
+      sections: [
+        {
+          heading: 'Quality Education',
+          text: 'Our curriculum follows the K-12 program of the Department of Education, enhanced with innovative teaching methods and modern learning resources to ensure students receive the best education possible.'
+        },
+        {
+          heading: 'Core Learning Areas',
+          list: [
+            'Filipino and English language proficiency',
+            'Mathematics and logical reasoning',
+            'Science and environmental awareness',
+            'Araling Panlipunan (Social Studies)',
+            'Technology and digital literacy',
+            'Arts, Music, and Physical Education'
+          ]
+        },
+        {
+          heading: 'Beyond the Classroom',
+          text: 'Learning extends beyond textbooks through field trips, educational tours, science fairs, and interactive workshops that make education engaging and memorable.'
+        }
+      ]
+    },
+    health: {
+      type: 'health',
+      icon: 'favorite',
+      title: 'Health',
+      subtitle: 'Wellness first, always',
+      images: [
+        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=400&fit=crop', // Kids exercising/sports
+        'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&h=400&fit=crop', // Gym/fitness activities
+        'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=1200&h=400&fit=crop', // Healthy eating/nutrition
+        'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&h=400&fit=crop'  // Medical care/wellness
+      ],
+      sections: [
+        {
+          heading: 'Comprehensive Health Programs',
+          text: 'We prioritize the physical and mental well-being of our students through comprehensive health initiatives, regular check-ups, and wellness education.'
+        },
+        {
+          heading: 'Health Services',
+          list: [
+            'School clinic with trained health personnel',
+            'Regular medical and dental check-ups',
+            'Nutrition programs and feeding initiatives',
+            'Mental health awareness and counseling',
+            'Physical fitness activities and sports programs',
+            'Health and hygiene education'
+          ]
+        },
+        {
+          heading: 'Safe Environment',
+          text: 'Our school maintains clean facilities, safe play areas, and implements strict health protocols to ensure a healthy learning environment for all students.'
+        }
+      ]
+    },
+    creativity: {
+      type: 'creativity',
+      icon: 'palette',
+      title: 'Creativity',
+      subtitle: 'Inspiring imagination and innovation',
+      images: [
+        'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&h=400&fit=crop', // Art supplies/painting
+        'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1200&h=400&fit=crop', // Kids doing arts
+        'https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=1200&h=400&fit=crop', // Music/instruments
+        'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=1200&h=400&fit=crop'  // Creative projects/crafts
+      ],
+      sections: [
+        {
+          heading: 'Unleashing Creative Potential',
+          text: 'We encourage students to express themselves through various creative outlets, fostering innovation, critical thinking, and artistic expression.'
+        },
+        {
+          heading: 'Creative Programs',
+          list: [
+            'Arts and crafts workshops',
+            'Music and dance programs',
+            'Drama and theater activities',
+            'Creative writing and storytelling',
+            'Science and innovation projects',
+            'Cultural performances and celebrations'
+          ]
+        },
+        {
+          heading: 'Celebrating Creativity',
+          text: 'Through exhibitions, performances, and competitions, we provide platforms for students to showcase their talents and build confidence in their creative abilities.'
+        }
+      ]
+    }
+  };
+
+  const handleInfoBoxClick = (type) => {
+    setSelectedContent(infoBoxContent[type]);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelectedContent(null);
+  };
 
   useEffect(() => {
     // Preload video
@@ -158,35 +306,58 @@ const HeroSection = () => {
 
       {/* Info Boxes - Bottom Right */}
       <div className={`hero-section__info-boxes ${infoBoxesVisible ? 'hero-section__info-boxes--visible' : 'hero-section__info-boxes--hidden'}`}>
-        <div className="hero-section__info-box hero-section__info-box--growth">
+        <button 
+          className="hero-section__info-box hero-section__info-box--growth"
+          onClick={() => handleInfoBoxClick('growth')}
+          aria-label="Learn about Growth"
+        >
           <span className="material-icons hero-section__info-icon">trending_up</span>
           <div className="hero-section__info-content">
             <h3>Growth</h3>
             <p>Nurturing potential</p>
           </div>
-        </div>
-        <div className="hero-section__info-box hero-section__info-box--knowledge">
+        </button>
+        <button 
+          className="hero-section__info-box hero-section__info-box--knowledge"
+          onClick={() => handleInfoBoxClick('knowledge')}
+          aria-label="Learn about Knowledge"
+        >
           <span className="material-icons hero-section__info-icon">school</span>
           <div className="hero-section__info-content">
             <h3>Knowledge</h3>
             <p>Building foundations</p>
           </div>
-        </div>
-        <div className="hero-section__info-box hero-section__info-box--health">
+        </button>
+        <button 
+          className="hero-section__info-box hero-section__info-box--health"
+          onClick={() => handleInfoBoxClick('health')}
+          aria-label="Learn about Health"
+        >
           <span className="material-icons hero-section__info-icon">favorite</span>
           <div className="hero-section__info-content">
             <h3>Health</h3>
             <p>Wellness first</p>
           </div>
-        </div>
-        <div className="hero-section__info-box hero-section__info-box--creativity">
+        </button>
+        <button 
+          className="hero-section__info-box hero-section__info-box--creativity"
+          onClick={() => handleInfoBoxClick('creativity')}
+          aria-label="Learn about Creativity"
+        >
           <span className="material-icons hero-section__info-icon">palette</span>
           <div className="hero-section__info-content">
             <h3>Creativity</h3>
             <p>Inspiring imagination</p>
           </div>
-        </div>
+        </button>
       </div>
+
+      {/* Info Box Modal */}
+      <InfoBoxModal 
+        isOpen={modalOpen}
+        onClose={closeModal}
+        content={selectedContent}
+      />
     </section>
   );
 };

@@ -70,10 +70,10 @@
 }
 
 .announcement-modal__close {
-  position: absolute;
+  position: fixed;
   top: 1rem;
   right: 1rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   border: none;
   width: 40px;
   height: 40px;
@@ -82,14 +82,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  z-index: 2100;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .announcement-modal__close:hover {
   background: white;
-  transform: rotate(90deg);
+  transform: scale(1.1);
+}
+
+.announcement-modal__close .material-icons {
+  font-size: 24px;
+  color: #1e3a8a;
 }
 
 .announcement-modal__hero {
@@ -97,12 +102,121 @@
   height: 400px;
   overflow: hidden;
   border-radius: 12px 12px 0 0;
+  position: relative;
+  z-index: 10;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.announcement-modal__hero--minimized {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Mini floating image - separate element */
+.announcement-modal__hero-mini {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: 200px;
+  height: 133px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  z-index: 2100;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.announcement-modal__hero-mini--visible {
+  opacity: 1;
 }
 
 .announcement-modal__hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.announcement-modal__hero-image--active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Slideshow Arrows */
+.announcement-modal__hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.announcement-modal__hero-arrow:hover {
+  background: #ffffff;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.announcement-modal__hero-arrow--prev {
+  left: 1rem;
+}
+
+.announcement-modal__hero-arrow--next {
+  right: 1rem;
+}
+
+.announcement-modal__hero-arrow .material-icons {
+  font-size: 24px;
+  color: #1e3a8a;
+}
+
+/* Slideshow Indicators */
+.announcement-modal__hero-indicators {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.announcement-modal__hero-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.announcement-modal__hero-indicator:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
+}
+
+.announcement-modal__hero-indicator--active {
+  background: #ffffff;
+  width: 24px;
+  border-radius: 5px;
 }
 
 .announcement-modal__body {
@@ -178,6 +292,13 @@
   .announcement-modal__hero {
     height: 250px;
     border-radius: 0;
+  }
+
+  .announcement-modal__hero-mini {
+    width: 100px;
+    height: 67px;
+    top: 0.75rem;
+    left: 0.75rem;
   }
 
   .announcement-modal__body {

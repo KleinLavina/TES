@@ -5,7 +5,10 @@ import HeroSection from './components/HeroSection';
 import FeaturedEventsCarousel from './components/FeaturedEventsCarousel';
 import AnnouncementSection from './components/AnnouncementSection';
 import SchoolInfoSection from './components/SchoolInfoSection';
+import AcademicsSection from './components/AcademicsSection';
+import AdmissionsSection from './components/AdmissionsSection';
 import StaffSection from './components/StaffSection';
+import FacilitiesSection from './components/FacilitiesSection';
 import Footer from './components/Footer';
 import AdminRoute from './admin/AdminRoute';
 import './App.css';
@@ -38,10 +41,13 @@ function App() {
       <MenuOverlay isOpen={isMenuOpen} onClose={closeMenu} />
       <main>
         <HeroSection />
+        <SchoolInfoSection />
         <AnnouncementSection />
         <FeaturedEventsCarousel />
-        <SchoolInfoSection />
+        <AcademicsSection />
+        <AdmissionsSection />
         <StaffSection />
+        <FacilitiesSection />
       </main>
       <Footer />
     </div>

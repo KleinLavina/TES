@@ -126,6 +126,104 @@
   cursor: pointer;
 }
 
+/* Images Grid for Multiple Images */
+.announcement-form__images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.announcement-form__image-item {
+  position: relative;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.announcement-form__image-item:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+}
+
+.announcement-form__image-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.announcement-form__image-badge {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background: var(--color-primary);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.announcement-form__image-remove {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(239, 68, 68, 0.9);
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.announcement-form__image-item:hover .announcement-form__image-remove {
+  opacity: 1;
+}
+
+.announcement-form__image-remove:hover {
+  background: rgba(239, 68, 68, 1);
+  transform: scale(1.1);
+}
+
+.announcement-form__image-remove .material-icons {
+  font-size: 18px;
+  color: white;
+}
+
+.announcement-form__add-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1rem;
+  background: #f3f4f6;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  color: #6b7280;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.announcement-form__add-image:hover {
+  background: #e5e7eb;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.announcement-form__add-image .material-icons {
+  font-size: 24px;
+}
+
 .announcement-form__actions {
   display: flex;
   justify-content: flex-end;

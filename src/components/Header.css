@@ -160,16 +160,32 @@
 }
 
 .header__nav-link {
-  font-family: var(--font-body);
+  font-family: 'Poppins', var(--font-body), sans-serif;
   font-size: 0.95rem;
-  font-weight: var(--font-weight-medium);
+  font-weight: 500;
   text-decoration: none;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  transition: all 0.3s ease;
   white-space: nowrap;
   position: relative;
   letter-spacing: 0.3px;
-  transform: scaleY(1.1);
   display: inline-block;
+  padding: 0.5rem 0;
+}
+
+/* Underline animation */
+.header__nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.header__nav-link:hover::after {
+  width: 100%;
 }
 
 /* Nav link colors - white on transparent, dark on scrolled */
@@ -184,7 +200,7 @@
 }
 
 .header__nav-link:hover {
-  opacity: 0.8;
+  transform: translateY(-2px);
 }
 
 .header--scrolled .header__nav-link:hover {

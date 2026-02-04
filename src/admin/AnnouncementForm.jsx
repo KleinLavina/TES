@@ -14,7 +14,8 @@ const AnnouncementForm = ({ announcement, onSave, onCancel, isEdit }) => {
     slug: '',
     excerpt: '',
     content: '',
-    image_url: '',
+    image_url: '', // Keep for backward compatibility
+    images: [], // New: array of image URLs for slideshow
     source: '',
     author: '',
     is_published: true,
@@ -30,6 +31,7 @@ const AnnouncementForm = ({ announcement, onSave, onCancel, isEdit }) => {
       setFormData({
         ...announcement,
         published_at: announcement.published_at.split('T')[0],
+        images: announcement.images || (announcement.image_url ? [announcement.image_url] : []),
       });
     }
   }, [announcement]);
@@ -59,14 +61,25 @@ const AnnouncementForm = ({ announcement, onSave, onCancel, isEdit }) => {
   };
 
   const handleImageUpload = (imageUrl) => {
-    setFormData(prev => ({ ...prev, image_url: imageUrl }));
+    setFormData(prev => ({ 
+      ...prev, 
+      images: [...prev.images, imageUrl],
+      image_url: prev.images.length === 0 ? imageUrl : prev.image_url // Set first image as main
+    }));
     if (errors.image_url) {
       setErrors(prev => ({ ...prev, image_url: '' }));
     }
   };
 
-  const handleImageRemove = () => {
-    setFormData(prev => ({ ...prev, image_url: '' }));
+  const handleImageRemove = (index) => {
+    setFormData(prev => {
+      const newImages = prev.images.filter((_, i) => i !== index);
+      return {
+        ...prev,
+        images: newImages,
+        image_url: newImages.length > 0 ? newImages[0] : ''
+      };
+    });
   };
 
   const validate = () => {
@@ -88,8 +101,8 @@ const AnnouncementForm = ({ announcement, onSave, onCancel, isEdit }) => {
       newErrors.content = 'Content is required';
     }
 
-    if (!formData.image_url) {
-      newErrors.image_url = 'Image is required';
+    if (!formData.images || formData.images.length === 0) {
+      newErrors.image_url = 'At least one image is required';
     }
 
     if (!formData.source.trim()) {
@@ -194,12 +207,43 @@ const AnnouncementForm = ({ announcement, onSave, onCancel, isEdit }) => {
         </div>
 
         <div className="announcement-form__section">
-          <h3 className="announcement-form__section-title">Featured Image</h3>
-          <FeaturedImagePreview
-            imageUrl={formData.image_url}
-            onReplace={() => setShowImageModal(true)}
-            onRemove={handleImageRemove}
-          />
+          <h3 className="announcement-form__section-title">
+            Featured Images {formData.images.length > 0 && `(${formData.images.length})`}
+          </h3>
+          <p className="announcement-form__hint" style={{ marginBottom: '1rem' }}>
+            Add multiple images for slideshow effect in the modal. First image will be the main featured image.
+          </p>
+          
+          {/* Display all uploaded images */}
+          {formData.images.length > 0 && (
+            <div className="announcement-form__images-grid">
+              {formData.images.map((imageUrl, index) => (
+                <div key={index} className="announcement-form__image-item">
+                  <img src={imageUrl} alt={`Image ${index + 1}`} />
+                  {index === 0 && <span className="announcement-form__image-badge">Main</span>}
+                  <button
+                    type="button"
+                    className="announcement-form__image-remove"
+                    onClick={() => handleImageRemove(index)}
+                    aria-label="Remove image"
+                  >
+                    <span className="material-icons">close</span>
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+          
+          {/* Add more images button */}
+          <button
+            type="button"
+            className="announcement-form__add-image"
+            onClick={() => setShowImageModal(true)}
+          >
+            <span className="material-icons">add_photo_alternate</span>
+            {formData.images.length === 0 ? 'Add Featured Image' : 'Add Another Image'}
+          </button>
+          
           {errors.image_url && <span className="announcement-form__error">{errors.image_url}</span>}
         </div>
 

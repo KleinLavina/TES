@@ -13,10 +13,11 @@ const MenuOverlay = ({ isOpen, onClose }) => {
 
   const menuItems = [
     { label: 'Home', href: '#hero' },
-    { label: 'Stories & Activities', href: '#stories' },
-    { label: 'Featured Events', href: '#events' },
     { label: 'About the School', href: '#about' },
-    { label: 'Faculty & Staff', href: '#faculty' },
+    { label: 'Events & Activities', href: '#stories' },
+    { label: 'Academics & Admissions', href: '#academics' },
+    { label: 'Faculty & Facilities', href: '#faculty' },
+    { label: 'Contact Us', href: '#footer' },
   ];
 
   const handleMenuClick = (e, href) => {

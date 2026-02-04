@@ -11,10 +11,11 @@ const HeaderSimple = ({ onMenuToggle }) => {
 
   const menuItems = [
     { label: 'Home', href: '#hero' },
-    { label: 'Stories', href: '#stories' },
-    { label: 'Events', href: '#events' },
     { label: 'About', href: '#about' },
+    { label: 'Events', href: '#stories' },
+    { label: 'Academics', href: '#academics' },
     { label: 'Faculty', href: '#faculty' },
+    { label: 'Contact', href: '#footer' },
   ];
 
   // Scroll detection for auto-hide header
