@@ -4,24 +4,38 @@
   position: relative;
   width: 100%;
   scroll-snap-align: start;
-  padding: 0;
-  margin-top: -1rem;
+  padding: 0 0 3rem 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  background: 
+    linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+    url('/media/bg/Gemini_Generated_Image_uq5za4uq5za4uq5z.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  border-top: none;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
 }
 
 /* Section Header - Outside carousel */
 .featured-events-carousel__header {
   text-align: center;
-  padding: 1rem 2rem 1rem;
+  padding: 5rem 2rem 2.5rem;
   position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  z-index: 2;
 }
 
 .featured-events-carousel__section-title {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
   font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
+  color: #0f172a;
   margin: 0;
-  letter-spacing: 0.5px;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
 }
 
 /* Wavy color animation for title letters */
@@ -78,13 +92,21 @@
 .featured-events-carousel__container {
   position: relative;
   width: 100%;
-  height: 700px;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 600px;
   overflow: hidden;
   background: #ffffff;
   opacity: 0;
-  transform: scale(0.95);
+  transform: scale(0.98);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   padding-bottom: 100px;
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12),
+              0 8px 24px rgba(0, 0, 0, 0.08),
+              0 2px 8px rgba(0, 0, 0, 0.04);
+  margin-bottom: 5rem;
+  border: 1px solid rgba(148, 163, 184, 0.1);
 }
 
 .featured-events-carousel__container--visible {
@@ -344,20 +366,22 @@
 /* Tablet */
 @media (max-width: 768px) {
   .featured-events-carousel {
-    padding: 2rem 0 4rem;
+    padding: 0;
   }
 
   .featured-events-carousel__header {
-    padding: 1.5rem 1.5rem 1rem;
+    padding: 3rem 1.5rem 1.5rem;
   }
 
   .featured-events-carousel__section-title {
-    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
   }
 
   .featured-events-carousel__container {
     height: 550px;
     padding-bottom: 90px;
+    border-radius: 20px;
+    margin-bottom: 3rem;
   }
 
   .featured-events-carousel__content {

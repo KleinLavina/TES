@@ -9,8 +9,43 @@
   scroll-snap-align: start;
 }
 
-/* Backdrop overlay */
+/* Custom dashed borders with bigger dashes and more spacing */
 .staff-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-image: repeating-linear-gradient(
+    to right,
+    #64748b 0px,
+    #64748b 30px,
+    transparent 30px,
+    transparent 50px
+  );
+  z-index: 1;
+}
+
+.staff-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-image: repeating-linear-gradient(
+    to right,
+    #64748b 0px,
+    #64748b 30px,
+    transparent 30px,
+    transparent 50px
+  );
+  z-index: 1;
+}
+
+/* Backdrop overlay */
+.staff-section__backdrop {
   content: '';
   position: absolute;
   top: 0;

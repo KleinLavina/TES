@@ -102,6 +102,7 @@ const StaffSection = () => {
 
   return (
     <section className="staff-section" id="faculty">
+      <div className="staff-section__backdrop"></div>
       <div className="staff-section__container">
         <h2 className="staff-section__title">Our Leadership & Faculty</h2>
 

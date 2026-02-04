@@ -1,14 +1,17 @@
 .announcement-card {
   position: relative;
-  height: 360px;
-  border-radius: 12px;
+  height: 380px;
+  border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
   flex: 1 1 calc(33.333% - 1.35rem);
   max-width: calc(33.333% - 1.35rem);
   min-width: 280px;
   opacity: 0;
-  transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 
+              0 2px 4px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Hidden state - fade out */
@@ -33,9 +36,12 @@
   }
 }
 
-/* Hover effect - lift card without layout shift */
+/* Hover effect - lift card with enhanced shadow */
 .announcement-card:hover {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 
+              0 8px 16px rgba(0, 0, 0, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Hover effect - lighten overlay to show full image */
@@ -90,13 +96,17 @@
 
 .announcement-card__title {
   font-family: var(--font-display);
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
   font-weight: var(--font-weight-bold);
   color: #ffffff;
-  margin: 0 0 0.625rem 0;
+  margin: 0 0 0.75rem 0;
   line-height: 1.3;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   transition: opacity 0.4s ease-in-out;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .announcement-card__meta {
@@ -123,23 +133,25 @@
 
 .announcement-card__button {
   align-self: flex-start;
-  padding: 0.5rem 1.25rem;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 25px;
+  padding: 0.625rem 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
   color: white;
   font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: var(--font-weight-medium);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .announcement-card__button:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.6);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.25) 100%);
+  border-color: rgba(255, 255, 255, 0.7);
   transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive */
