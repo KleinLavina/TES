@@ -3,6 +3,8 @@
  * Handles localStorage operations for featured events and announcements
  */
 
+import mockEvents from '../data/mockEvents.json';
+
 const STORAGE_KEY = 'featuredEvents';
 const VERSION_KEY = 'featuredEvents_version';
 const CURRENT_VERSION = '2'; // Increment this to force reload mock data
@@ -15,14 +17,10 @@ const initializeMockData = () => {
   const version = localStorage.getItem(VERSION_KEY);
   
   if (!stored || version !== CURRENT_VERSION) {
-    // Import mock data dynamically
-    import('../data/mockEvents.json').then(module => {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(module.default));
-      localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
-      console.log('Mock events data loaded with images');
-    }).catch(err => {
-      console.error('Failed to load mock data:', err);
-    });
+    // Load mock data synchronously
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(mockEvents));
+    localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
+    console.log('Mock events data loaded with images');
   }
 };
 
